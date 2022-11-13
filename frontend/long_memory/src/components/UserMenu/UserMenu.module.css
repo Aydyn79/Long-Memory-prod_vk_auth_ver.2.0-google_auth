@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    animation: container 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.button_add {
+    background: url('../../static/add-button.png') no-repeat center;
+}
+
+.button_personal {
+    background: url('../../static/persona-button.png') no-repeat center;
+}
+
+.button_view {
+    background: url('../../static/eye-button.png') no-repeat center;
+}
+
+.button {
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    border-color: transparent;
+    margin: 10px;
+    background-size: contain;
+    color: transparent;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover {
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    margin: 10px;
+    border: transparent;
+    color: white;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1b6d85;
+}
+
+.button:active {
+    background-color: #1b6d8580;
+}
+
+.link {
+    text-decoration: none;
+}
+
+@media screen and (min-width: 375px) and (max-width: 809px) {
+
+    .container {
+        margin-top: 20px;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .button {
+        height: 120px;
+        width: 120px;
+    }
+
+    .button:hover {
+        height: 120px;
+        width: 120px;
+        font-size: 20px;
+    }
+
+}
+
+@keyframes container {
+    0% {
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

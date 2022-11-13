@@ -1,0 +1,54 @@
+{% extends 'base_email.html' %}
+
+{% block title %}
+<p>Пора повторять материал!</p>
+{% endblock %}
+
+{% block content %}
+<table border="0" cellpadding="0" cellspacing="0" style="margin:0; padding:0" width="100%" bgcolor="#f5f5f5">
+    <tr>
+        <td>
+            <center style="max-width: 600px; width: 100%;">
+                <table cellpadding="0" cellspacing="0"
+                       style="margin:0 auto; padding:0; border: 1px solid #ffffff; border-radius: 10px;"
+                       width="100%" bgcolor="#ffffff">
+                    <tr>
+                        <td>
+                            <h4>Привет, {{name}}!</h4>
+                            <p>Пришло время повторить:</p>
+                            <hr>
+                        </td>
+                    </tr>
+                    {% for notif in notifications %}
+                    <tr>
+                        <td>
+                            <center style="max-width: 600px; width: 100%;">
+                                <span style="display:inline-block; width:300px;">
+                                    <p>✪ Название: {{notif.title}} ✪</p>
+                                    <p>Описание: {{notif.description}}</p>
+                                    <p>Напоминание создано: {{notif.created_at|datetime_format('full')}}</p>
+                                    <p>Дата повтора: {{notif.next_notification|datetime_format('short')}}</p>
+                                </span>
+                            </center>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <center style="max-width: 600px; width: 100%;">
+                                <hr>
+                                <p>
+                                    Prepared with ❤ by "Crazy Pyton Crew"
+                                </p>
+                                <p>
+                                    <a href="http://longmemory.ru" target="_blank">Site</a> &copy; 2022
+                                </p>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </td>
+    </tr>
+</table>
+{% endblock %}

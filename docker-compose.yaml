@@ -1,0 +1,100 @@
+version: "3.9"
+services:
+  db:
+    image: kartoza/postgis
+    privileged: true
+    restart: always
+    ports:
+      - 54326:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: long_memory_db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./postgresql:/var/lib/postgresql
+
+
+  backend:
+    build: ./backend
+    privileged: true
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      ADMIN_LOGIN: $ADMIN_LOGIN
+      ADMIN_PASS: $ADMIN_PASS
+    command: bash -c "
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      python create_super_user_admin.py $ADMIN_LOGIN $ADMIN_PASS &&
+      gunicorn long_memory.wsgi -b 0.0.0.0:8080
+      "
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./www:/www
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 8000:443
+    depends_on:
+      - backend
+    volumes:
+      - ./www:/www
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 443:443
+      - 80:80
+    depends_on:
+      - nginx
+    volumes:
+      - ./www:/www
+
+  monitoring_script:
+    build: ./notification_system/monitoring_script
+    restart: always
+    command: bash -c "
+      python monitoring.py
+      "
+    depends_on:
+      - rabbitmq
+
+  email_sender:
+    build: ./notification_system/mail
+    restart: always
+    command: bash -c "python email_sender.py"
+    depends_on:
+      - monitoring_script
+
+  telegram_sender:
+    build: ./notification_system/telegram
+    restart: always
+    command: bash -c "python bot.py"
+    depends_on:
+      - monitoring_script
+
+  vk_sender:
+    build: ./notification_system/vk
+    restart: always
+    command: bash -c "python vk_sender.py"
+    depends_on:
+      - monitoring_script

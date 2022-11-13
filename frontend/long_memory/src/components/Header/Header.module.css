@@ -1,0 +1,177 @@
+.container {
+    position: sticky;
+    top: 0;
+}
+
+.logo_title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.title {
+    height: 140px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 30px;
+}
+
+.header {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    background: linear-gradient(#043168, #0b1d41);
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    margin-right: 30px;
+}
+
+.button:hover {
+    font-size: 25px;
+}
+
+.button:active {
+    color: #1b6d85;
+}
+
+.user_menu {
+    width: 239px;
+    height: 35px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.button_logo {
+    color: transparent;
+    border: 0;
+    width: 100px;
+    height: 100px;
+    background: url('../../static/logo_new.png') no-repeat;
+    background-size: cover;
+    margin-right: 20px;
+    animation: button_logo 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.button_logo_materials {
+    color: transparent;
+    border: 0;
+    width: 100px;
+    height: 100px;
+    background: url('../../static/new_book_logo.png') no-repeat;
+    background-size: contain;
+    margin-right: 40px;
+    animation: button_logo_materials 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.button_logo:hover {
+    filter: brightness(150%);
+}
+
+.button_logo_materials:hover {
+    filter: brightness(150%);
+}
+
+.button_logo:active {
+    animation: rotate-center 0.6s ease-in-out both;
+}
+
+.button_logo_materials:active {
+    animation: rotate-center 0.6s ease-in-out both;
+}
+
+
+@media screen and (min-width: 375px) and (max-width: 809px) {
+
+    .title {
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .logo_title {
+        margin-left: 5px;
+    }
+
+    .button {
+        font-size: 15px;
+    }
+
+    .button:hover {
+        font-size: 17px;
+    }
+
+    .user_menu {
+        width: 40%;
+    }
+
+    .button_logo {
+        width: 60px;
+        height: 60px;
+        background-size: cover;
+        margin-left: 20px;
+    }
+
+    .button_logo_materials {
+        width: 60px;
+        height: 60px;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .header {
+        height: 90px;
+    }
+
+}
+
+@keyframes button_logo {
+    0% {
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes button_logo {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes button_logo_materials {
+    0% {
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes button_logo_materials {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
