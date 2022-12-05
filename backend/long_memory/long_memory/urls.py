@@ -11,6 +11,9 @@ from bug_report.views import BugReportCreateView
 urlpatterns = [
     # path('auth/google/', GoogleLogin.as_view(), name='google_login'),
     # path('api/v1/rest-auth/google_auth/', GoogleLogin.as_view()),
+    path('dj-rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
+    # path('dj-rest-auth/vk/', VKLogin.as_view(), name='vk_login'),
+    path('auth/vk/', include('rest_framework_social_oauth2.urls')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('admin/', admin.site.urls),
     path('api/user_data/', UserView.as_view()),
@@ -25,4 +28,5 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += [path('dj-rest-auth/google/', GoogleLogin.as_view(), name='google_login')]
+    # urlpatterns += [path('dj-rest-auth/google/', GoogleLogin.as_view(), name='google_login')]
+    # urlpatterns += [path('dj-rest-auth/vk/', VKLogin.as_view(), name='vk_login')]

@@ -187,5 +187,6 @@ export {
     userRegistration,
     userAuthorization,
     userActivation,
-    sendBugReport
+    sendBugReport,
+    get_headers,
 };

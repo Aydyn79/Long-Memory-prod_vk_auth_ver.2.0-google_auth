@@ -19,6 +19,7 @@ from .serializers import CreateUserSerializer, UserSerializer
 from .models import CustomUser
 
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.vk.views import VKOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
 
 # class GoogleLogin(SocialLoginView):
@@ -36,6 +37,16 @@ class GoogleLogin(SocialLoginView):
         kwargs['context'] = self.get_serializer_context()
         return serializer_class(*args, **kwargs)
 
+
+# class VKLogin(SocialLoginView):
+#     adapter_class = VKOAuth2Adapter
+#     client_class = OAuth2Client
+#     callback_url = 'http://localhost:3000/'
+#     serializer_class = SocialLoginSerializer
+#     def get_serializer(self, *args, **kwargs):
+#         serializer_class = self.get_serializer_class()
+#         kwargs['context'] = self.get_serializer_context()
+#         return serializer_class(*args, **kwargs)
 
 class CreateUserView(CreateAPIView):
     model = get_user_model()

@@ -44,7 +44,7 @@
 }
 
 .user_menu {
-    width: 239px;
+    width: 550px;
     height: 35px;
     display: flex;
     justify-content: space-around;
@@ -89,6 +89,27 @@
 .button_logo_materials:active {
     animation: rotate-center 0.6s ease-in-out both;
 }
+
+.vk_logo {
+    color: transparent;
+    border: none;
+    width: 67px;
+    height: 67px;
+    background: url('../../static/icons8-vkontakte-67.png') no-repeat;
+    background-size: cover;
+    margin-right: 20px;
+}
+
+.vk_button {
+    width: 192px;
+    height: 67px;
+    margin-right: 40px;
+    border: none;
+    color: transparent;
+    background: url('../../static/vk_long_middle.png') no-repeat;;
+    
+}
+
 
 
 @media screen and (min-width: 375px) and (max-width: 809px) {

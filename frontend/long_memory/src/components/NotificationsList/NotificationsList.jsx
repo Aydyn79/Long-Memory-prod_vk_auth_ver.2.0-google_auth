@@ -160,10 +160,10 @@ const NotificationList = () => {
 
                     <div className={classes.filter_sorted}>
                         <input className={classes.filter}
-                               type='text'
-                               placeholder='поиск'
-                               value={filterText}
-                               onChange={event => setFilterText(event.target.value)}
+                                type='text'
+                                placeholder='поиск'
+                                value={filterText}
+                                onChange={event => setFilterText(event.target.value)}
                         />
                         <MySelect
                             value={selectedSort}
@@ -189,10 +189,10 @@ const NotificationList = () => {
                     </ThemeProvider>
                     {_DATA.currentData().map((notification) =>
                         <Notification notification={notification}
-                                      setStatus={setStatus}
-                                      filterNotifications={filterNotifications}
-                                      key={notification.id}
-                                      token={token}
+                                        setStatus={setStatus}
+                                        filterNotifications={filterNotifications}
+                                        key={notification.id}
+                                        token={token}
                         />)
                     }
                 </div>

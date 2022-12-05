@@ -7,6 +7,8 @@ import {set_token_to_storage} from "../../functions/tokenStorage"
 // import { GoogleLogin } from '@react-oauth/google';
 import MyCustomButton from '../GoogleAuth/Button';
 import Login from "../GoogleAuth/googleLogin"
+// import AuthVK from "../VkAuth/VkAuth";
+import VKreg from "../VkAuth/VKreg";
 
 
 
@@ -19,7 +21,8 @@ const logout = (setToken, navigate) => {
 const Header = () => {
     const navigate = useNavigate();
     const {token, setToken} = useUserContext();
-    const googleAuth = Login();
+    const googleAuth = Login(setToken, navigate);
+
     return (
         <div className={classes.container}>
             <div className={classes.header}>
@@ -37,15 +40,10 @@ const Header = () => {
 
                 {!token ?
                     <div className={classes.user_menu}>
-                        {/* <GoogleLogin
-                            onSuccess={credentialResponse => {
-                                console.log(credentialResponse);
-                            }}
-                            onError={() => {
-                                console.log('Login Failed');
-                            }}
-                        /> */}
-                        <MyCustomButton onClick={() => googleAuth()}>Google
+                        
+                        {/* <AuthVK/> */}
+                        <VKreg/>
+                        <MyCustomButton onClick={() => googleAuth()}>Sign in with Google
                         </MyCustomButton>
 
                         <Link to='/registration'>

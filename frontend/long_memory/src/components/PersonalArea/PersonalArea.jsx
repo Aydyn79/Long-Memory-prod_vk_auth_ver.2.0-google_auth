@@ -33,7 +33,7 @@ const Helper = () => {
             </span>
             <h3>Чтобы получать сообщения в ВК
                 вступите в <a href="https://vk.com/public214673853" rel="noreferrer"
-                              target="_blank"> нашу группу
+                            target="_blank"> нашу группу
                 </a> и напишите любое сообщение в личное сообщение группы.
             </h3>
         </div>
